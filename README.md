@@ -2,5 +2,5 @@
 
 Update DNS entries for a domain.
 ```bash
-./update-dns.sh 8.8.8.8 magma.godaddy.shubhamtatvamasi.com
+./update-dns.sh 3.110.121.47 galaxy.shubhamtatvamasi.com
 ```
