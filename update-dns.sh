@@ -15,6 +15,7 @@ fi
 
 AUTH_HEADER="Authorization: sso-key ${GODADDY_API_KEY}:${GODADDY_API_SECRET}"
 RECORDS_URI="${GODADDY_URL}/v1/domains/${DOMAIN_NAME}/records"
+NEW_RECORD="[{ \"data\": \"${RECORD_VALUE}\" }]"
 
 for i in *.nms api fluentd controller bootstrapper-controller
 do
@@ -26,7 +27,6 @@ do
   fi
 
   RECORD_PATH="${RECORDS_URI}/${RECORD_TYPE}/${RECORD_NAME}"
-  NEW_RECORD="[{ \"data\": \"${RECORD_VALUE}\" }]"
 
   if [ "${RECORD_VALUE}" == "delete" ]; then
     echo "Deleting ${RECORD_NAME}.${DOMAIN_NAME}"
