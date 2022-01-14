@@ -25,12 +25,17 @@ do
     RECORD_NAME="${i}"
   fi
 
-  echo "Updating ${RECORD_NAME}.${DOMAIN_NAME}"
   RECORD_PATH="${RECORDS_URI}/${RECORD_TYPE}/${RECORD_NAME}"
   NEW_RECORD="[{ \"data\": \"${RECORD_VALUE}\" }]"
 
-  curl -X "PUT" --data "${NEW_RECORD}" \
-    -H "Content-Type: application/json" \
-    -H "${AUTH_HEADER}" ${RECORD_PATH}
+  if [ "${RECORD_VALUE}" == "delete" ]; then
+    echo "Deleting ${RECORD_NAME}.${DOMAIN_NAME}"
+    curl -s -X "DELETE" -H "$AUTH_HEADER" $RECORD_PATH
+  else
+    echo "Updating ${RECORD_NAME}.${DOMAIN_NAME}"
+    curl -X "PUT" --data "${NEW_RECORD}" \
+      -H "Content-Type: application/json" \
+      -H "${AUTH_HEADER}" ${RECORD_PATH}
+  fi
 
 done
