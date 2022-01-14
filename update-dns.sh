@@ -10,7 +10,7 @@ DOMAIN_NAME=$(echo ${DOMAIN} | rev | cut -d "." -f 1,2 | rev)
 SUBDOMAIN=$(echo ${DOMAIN} | sed "s/${DOMAIN_NAME}//")
 
 if [ "${SUBDOMAIN}" != "" ]; then
-    SUBDOMAIN=$(echo ${SUBDOMAIN} | rev | cut -c2- | rev)
+  SUBDOMAIN=$(echo ${SUBDOMAIN} | rev | cut -c2- | rev)
 fi
 
 AUTH_HEADER="Authorization: sso-key ${GODADDY_API_KEY}:${GODADDY_API_SECRET}"
