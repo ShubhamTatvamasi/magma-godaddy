@@ -6,12 +6,12 @@ GODADDY_API_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxx"
 GODADDY_API_SECRET="xxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 
-Update DNS entries for a domain.
+Update DNS entries for Magma Orchestrator.
 ```bash
 ./update-dns.sh 3.110.121.47 galaxy.shubhamtatvamasi.com
 ```
 
-Delete DNS entries for a domain.
+Delete DNS entries for Magma Orchestrator.
 ```bash
 ./update-dns.sh delete galaxy.shubhamtatvamasi.com
 ```
