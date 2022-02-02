@@ -30,7 +30,7 @@ do
 
   if [ "${RECORD_VALUE}" == "delete" ]; then
     echo "Deleting ${RECORD_NAME}.${DOMAIN_NAME}"
-    curl -X "DELETE" -H "$AUTH_HEADER" $RECORD_PATH
+    curl -X "DELETE" -H "${AUTH_HEADER}" ${RECORD_PATH}
   else
     echo "Updating ${RECORD_NAME}.${DOMAIN_NAME}"
     curl -X "PUT" --data "${NEW_RECORD}" \
