@@ -29,10 +29,10 @@ do
   RECORD_PATH="${RECORDS_URI}/${RECORD_TYPE}/${RECORD_NAME}"
 
   if [ "${RECORD_VALUE}" == "delete" ]; then
-    echo "Deleting ${RECORD_NAME}.${DOMAIN_NAME}"
+    echo "$(tput setaf 1)Deleting ${RECORD_NAME}.${DOMAIN_NAME}"
     curl -X "DELETE" -H "${AUTH_HEADER}" ${RECORD_PATH}
   else
-    echo "Updating ${RECORD_NAME}.${DOMAIN_NAME}"
+    echo "$(tput setaf 2)Updating ${RECORD_NAME}.${DOMAIN_NAME}"
     curl -X "PUT" --data "${NEW_RECORD}" \
       -H "Content-Type: application/json" \
       -H "${AUTH_HEADER}" ${RECORD_PATH}
