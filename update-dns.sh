@@ -7,17 +7,15 @@ DOMAIN=${2}
 RECORD_VALUE=${1}
 RECORD_TYPE=A
 DOMAIN_NAME=$(echo ${DOMAIN} | rev | cut -d "." -f 1,2 | rev)
-SUBDOMAIN=$(echo ${DOMAIN} | sed "s/${DOMAIN_NAME}//")
+SUBDOMAIN=${DOMAIN%${DOMAIN_NAME}}
 
-if [ "${SUBDOMAIN}" != "" ]; then
-  SUBDOMAIN=${SUBDOMAIN%?}
-fi
+[ ! -z "${SUBDOMAIN}" ] && SUBDOMAIN=${SUBDOMAIN%?}
 
 AUTH_HEADER="Authorization: sso-key ${GODADDY_API_KEY}:${GODADDY_API_SECRET}"
 RECORDS_URI="${GODADDY_URL}/v1/domains/${DOMAIN_NAME}/records"
 NEW_RECORD="[{ \"data\": \"${RECORD_VALUE}\" }]"
 
-for i in *.nms api fluentd controller bootstrapper-controller
+for i in api *.nms fluentd controller bootstrapper-controller
 do
 
   if [ "${SUBDOMAIN}" != "" ]; then
